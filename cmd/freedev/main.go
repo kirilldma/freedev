@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	addr := getenv("FREEDEV_ADDR", ":8787")
+	addr := getenv("FREEDEV_ADDR", "0.0.0.0:8787")
 	dataDir := getenv("FREEDEV_DATA", filepath.Join(".", "data"))
 	a, err := app.New(dataDir)
 	if err != nil {
