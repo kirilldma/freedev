@@ -6,6 +6,8 @@ Not OneDev. Not GitLab. Not trying to be. If you need enterprise SSO and RBAC ma
 
 **Dependencies:** Go 1.23+. Router is [chi](https://github.com/go-chi/chi). SQLite via `modernc.org/sqlite`. Release builds use `CGO_ENABLED=0` so you are not dragging libc SQLite headaches across targets.
 
+**Discord**: Join our discord server, its best support for me! https://discord.gg/DbmMQe7ZN
+
 ---
 
 ## Run it
