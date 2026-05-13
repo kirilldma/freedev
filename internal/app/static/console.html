@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-full">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FreeDev · Console</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { darkMode: "class" };
+</script>
+<style>
+:root {
+	--fd-accent: #171717;
+	--fd-accent-fg: #fafafa;
+}
+.fd-btn-primary {
+	background-color: var(--fd-accent);
+	color: var(--fd-accent-fg);
+}
+.fd-btn-primary:hover {
+	filter: brightness(1.09);
+}
+dialog::backdrop { background: rgba(0,0,0,.4); }
+html.fd-lite *, html.fd-lite *::before, html.fd-lite *::after {
+	animation-duration: 0.01ms !important;
+	animation-iteration-count: 1 !important;
+	transition-duration: 0.01ms !important;
+	scroll-behavior: auto !important;
+}
+html.fd-lite .backdrop-blur-md {
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+}
+@media (prefers-color-scheme: light) {
+	html.fd-lite header.sticky { background: rgba(250,250,250,.96); }
+}
+html.dark.fd-lite header.sticky,
+html.fd-lite.dark header.sticky { background: rgba(10,10,10,.96); }
+html.fd-lite #nav-fab { box-shadow: none; }
+input[type="color"].fd-color-well {
+	-webkit-appearance: none;
+	appearance: none;
+	padding: 0;
+}
+input[type="color"].fd-color-well::-webkit-color-swatch-wrapper {
+	padding: 4px;
+}
+input[type="color"].fd-color-well::-webkit-color-swatch {
+	border: none;
+	border-radius: 6px;
+}
+input[type="color"].fd-color-well::-moz-color-swatch {
+	border: none;
+	border-radius: 6px;
+}
+</style>
+</head>
+<body class="min-h-full bg-neutral-50 font-sans text-[15px] leading-relaxed text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-50">
+<div id="root"></div>
+<script type="module" src="/js/main.js?v=freedev-gitui-10"></script>
+</body>
+</html>

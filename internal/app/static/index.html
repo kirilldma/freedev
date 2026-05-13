@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="FreeDev — облегчённая альтернатива OneDev: проекты, CI, задачи. Lite alternative for OneDev.">
+<title>FreeDev</title>
+<style>
+:root {
+	color-scheme: light dark;
+	--bg: #fafafa;
+	--fg: #171717;
+	--muted: #737373;
+	--border: #e5e5e5;
+	--accent: #171717;
+	--card: #fff;
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #0a0a0a;
+		--fg: #fafafa;
+		--muted: #a3a3a3;
+		--border: #262626;
+		--accent: #fafafa;
+		--card: #171717;
+	}
+}
+* { box-sizing: border-box; }
+body {
+	margin: 0;
+	min-height: 100dvh;
+	font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	font-size: 15px;
+	line-height: 1.55;
+	background: var(--bg);
+	color: var(--fg);
+}
+.wrap {
+	max-width: 52rem;
+	margin: 0 auto;
+	padding: clamp(1.25rem, 4vw, 2.5rem);
+}
+.hero {
+	padding: clamp(2rem, 6vw, 3.5rem) 0;
+	border-bottom: 1px solid var(--border);
+}
+.hero h1 {
+	margin: 0 0 0.35rem;
+	font-size: clamp(1.75rem, 5vw, 2.35rem);
+	font-weight: 700;
+	letter-spacing: -0.03em;
+}
+.tagline {
+	margin: 0 0 1rem;
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: var(--fg);
+}
+.hero-desc {
+	margin: 0;
+	color: var(--muted);
+	max-width: 40rem;
+	font-size: 0.9rem;
+}
+.hero-desc + .hero-desc {
+	margin-top: 0.65rem;
+}
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	margin-top: 1.5rem;
+}
+.actions a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.65rem 1.15rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+	text-decoration: none;
+	border-radius: 0.5rem;
+	border: 1px solid var(--border);
+	color: var(--fg);
+	background: var(--card);
+}
+.actions a.primary {
+	background: var(--accent);
+	color: var(--bg);
+	border-color: var(--accent);
+}
+.stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+	gap: 0.75rem;
+	margin: 2rem 0;
+}
+.stat {
+	padding: 1rem;
+	border-radius: 0.65rem;
+	border: 1px solid var(--border);
+	background: var(--card);
+}
+.stat dt {
+	font-size: 0.65rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--muted);
+	margin: 0;
+	line-height: 1.35;
+}
+.stat dd {
+	margin: 0.35rem 0 0;
+	font-size: 1.5rem;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+}
+.features {
+	display: grid;
+	gap: 0.65rem;
+	margin: 2rem 0;
+	padding: 0;
+	list-style: none;
+}
+.features li {
+	padding: 0.85rem 1rem;
+	border-radius: 0.5rem;
+	border: 1px solid var(--border);
+	background: var(--card);
+	font-size: 0.8125rem;
+	line-height: 1.45;
+}
+.status-line {
+	font-size: 0.8rem;
+	color: var(--muted);
+	margin-top: 2rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--border);
+}
+.status-line span.ok { color: #15803d; }
+@media (prefers-color-scheme: dark) {
+	.status-line span.ok { color: #4ade80; }
+}
+.status-line span.bad { color: #b91c1c; }
+@media (prefers-color-scheme: dark) {
+	.status-line span.bad { color: #f87171; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+	<section class="hero">
+		<h1>FreeDev</h1>
+		<p class="tagline">Lite alternative for OneDev · Облегчённая альтернатива платформе OneDev</p>
+		<p class="hero-desc">Корпоративная локальная среда для управления проектами, CI/CD-пайплайнами, сборками и задачами. Развёртывание одним исполняемым модулем, хранилище SQLite, веб-интерфейс на встроенных статических ресурсах без отдельной сборки фронтенда.</p>
+		<p class="hero-desc">A lightweight local workspace for projects, CI/CD pipelines, builds, and issue tracking — single-binary deployment, SQLite persistence, embedded static UI without a dedicated frontend build pipeline.</p>
+		<div class="actions">
+			<a class="primary" href="/console.html#/">Открыть консоль · Open console</a>
+			<a href="/api/health">API · Health check</a>
+		</div>
+	</section>
+	<dl class="stats" id="stats">
+		<div class="stat"><dt>Проекты · Projects</dt><dd id="st-proj">—</dd></div>
+		<div class="stat"><dt>Пайплайны · Pipelines</dt><dd id="st-pl">—</dd></div>
+		<div class="stat"><dt>Сборки · Builds</dt><dd id="st-bd">—</dd></div>
+		<div class="stat"><dt>Задачи · Issues</dt><dd id="st-is">—</dd></div>
+	</dl>
+	<ul class="features">
+		<li><strong>REST API</strong> по адресу <code>/api</code>: сводные показатели и лента событий с настраиваемыми лимитами выборки · Summary metrics and activity feed with configurable fetch limits.</li>
+		<li>Глобальный поиск по проектам и задачам, экспорт метаданных проекта в JSON · Global search across projects and issues, project metadata export as JSON.</li>
+		<li>Консоль администрирования подключает Tailwind через CDN; данная страница не использует внешние шрифты и клиентские фреймворки · The admin console loads Tailwind via CDN; this landing page uses no remote fonts or client-side frameworks.</li>
+		<li>Режим ограниченных ресурсов: <code>localStorage.setItem("freedev-lite","1")</code> на origin сервера, затем перезагрузка <code>/console.html</code> — отключение анимации и минимальные объёмы ответов API · Resource-constrained mode: set the key above on the server origin and reload <code>/console.html</code> for reduced motion and minimal API payloads.</li>
+	</ul>
+	<p class="status-line" id="live">Загрузка · Loading…</p>
+</div>
+<script>
+(function () {
+	function num(v) {
+		var n = Number(v);
+		return Number.isFinite(n) ? String(n) : "—";
+	}
+	function set(id, t) {
+		var el = document.getElementById(id);
+		if (el) el.textContent = t;
+	}
+	function ping() {
+		var live = document.getElementById("live");
+		fetch("/api/overview", { cache: "no-store" })
+			.then(function (r) {
+				return r.json().then(function (j) {
+					return { ok: r.ok, j: j };
+				});
+			})
+			.then(function (x) {
+				if (!x.ok || !x.j) throw new Error("overview");
+				set("st-proj", num(x.j.projects));
+				set("st-pl", num(x.j.pipelines));
+				set("st-bd", num(x.j.builds));
+				set("st-is", num(x.j.issues_total));
+				return fetch("/api/health", { cache: "no-store" });
+			})
+			.then(function (r) {
+				return r.json().then(function (j) {
+					return { ok: r.ok, j: j };
+				});
+			})
+			.then(function (x) {
+				var ok = x.ok && x.j && String(x.j.status || "").toLowerCase() === "ok";
+				live.innerHTML =
+					"Сервис · Service: <span class=\"" +
+					(ok ? "ok" : "bad") +
+					"\">" +
+					(ok ? "работоспособен · OK" : "недоступен · FAIL") +
+					"</span> · Сводка загружена · Overview loaded";
+			})
+			.catch(function () {
+				live.innerHTML =
+					"<span class=\"bad\">Конечная точка API недоступна · API endpoint unavailable</span> — проверьте, что сервер запущен и порт указан верно · Verify that the server process is running and the port is correct";
+			});
+	}
+	if ("requestIdleCallback" in window) {
+		requestIdleCallback(ping, { timeout: 1200 });
+	} else setTimeout(ping, 16);
+})();
+</script>
+</body>
+</html>
